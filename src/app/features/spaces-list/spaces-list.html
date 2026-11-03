@@ -1,0 +1,20 @@
+<div class="explorer">
+  <div class="content">
+    <header class="hero">
+      <p class="eyebrow">SPACEX EXPLORER</p>
+      <h1>Explore the fleet.</h1>
+      <p class="intro">Discover spacecraft, missions and the technology behind every launch.</p>
+    </header>
+
+    <section class="cards" aria-label="SpaceX categories">
+      @for (item of list; track $index) {
+        <app-space
+          text="{{ item.title }}"
+          icon="{{ item.icon }}"
+          description="{{ item.description }}"
+          link="{{ item.link }}"
+        />
+      }
+    </section>
+  </div>
+</div>

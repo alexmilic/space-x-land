@@ -1,0 +1,9 @@
+<a class="category-card" [routerLink]="link()" [attr.aria-label]="'Explore ' + text()">
+  <mat-icon class="category-icon" aria-hidden="true">{{ icon() }}</mat-icon>
+  <h2>{{ text() }}</h2>
+  <p>{{ description() }}</p>
+
+  <span class="learn-more" aria-hidden="true">
+    Learn more
+  </span>
+</a>

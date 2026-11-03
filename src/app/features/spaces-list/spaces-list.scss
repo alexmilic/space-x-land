@@ -1,0 +1,69 @@
+:host {
+  display: block;
+}
+
+.explorer {
+  min-height: 100dvh;
+}
+
+.content {
+  box-sizing: border-box;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 80px 32px;
+}
+
+.hero {
+  padding: 32px 0 64px;
+}
+
+.eyebrow {
+  margin: 0 0 20px;
+  color: var(--color-accent);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(40px, 6vw, 76px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.intro {
+  max-width: 650px;
+  margin: 22px 0 0;
+  color: var(--color-text-intro);
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.6;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 1000px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .content {
+    padding: 40px 20px;
+  }
+
+  .hero {
+    padding: 16px 0 40px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

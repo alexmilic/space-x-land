@@ -1,0 +1,89 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+
+
+
+// --color-background — pozadina aplikacije
+// --color-surface — pozadina kartica
+// --color-surface-hover — hover pozadina
+// --color-text-primary — glavni tekst
+// --color-text-secondary — opisi
+// --color-border — ivice
+// --color-accent — plavi akcenti
+
+
+@use '@angular/material' as mat;
+
+:root {
+  // Backgrounds and surfaces
+  --color-background: #0b0f19;
+  --color-surface: #151d2c;
+  --color-surface-translucent: #151d2cf2;
+  --color-surface-hover: #192638;
+
+  // Text, borders and accents
+  --color-text-primary: #e6edf3;
+  --color-text-secondary: #a5b3c7;
+  --color-text-intro: #b4c0d1;
+  --color-border: #293548;
+  --color-accent: #38bdf8;
+
+  // Background image overlays
+  --color-overlay-strong: #0b0f19e6;
+  --color-overlay-soft: #0b0f1920;
+}
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$cyan-palette,
+        tertiary: mat.$orange-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+body {
+  color-scheme: dark;
+
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+  min-height: 100dvh;
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to bottom, transparent 35%, var(--color-background) 100%),
+      linear-gradient(to right, var(--color-overlay-strong), var(--color-overlay-soft)),
+      url('/assets/images/earth-horizon.png');
+    background-position: center, center, center 45%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+/* You can add global styles to this file, and also import other style files */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
