@@ -17,6 +17,104 @@
   display: block;
   height: 100vh;
 }
+
+.site-header {
+  background: rgba(11, 15, 25, 0.8);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(16px);
+}
+
+.navigation {
+  max-width: 1280px;
+  min-height: 76px;
+  margin-inline: auto;
+  padding-inline: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.brand-icon {
+  width: 30px;
+  height: 30px;
+  color: var(--color-accent);
+}
+
+.brand-detail {
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  a {
+    display: block;
+    padding: 12px 18px;
+    border-radius: 6px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 160ms ease, background-color 160ms ease;
+
+    &:hover {
+      color: var(--color-text-primary);
+      background: var(--color-surface-hover);
+    }
+
+    &.active {
+      color: var(--color-accent);
+      background: rgba(56, 189, 248, 0.1);
+    }
+  }
+}
+
+.navigation a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+  .navigation {
+    padding: 16px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+
+    a {
+      padding: 12px 20px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-links a {
+    transition: none;
+  }
+}
 h1 {
   font-size: 3.125rem;
   color: var(--color-text-primary);

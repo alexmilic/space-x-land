@@ -1,1 +1,21 @@
-<p>capsules works!</p>
+<h1>Capsules</h1>
+
+@if (capsules$ | async; as capsules) {
+  @if (errorMessage) {
+    <p role="alert">{{ errorMessage }}</p>
+  } @else {
+    <ul>
+      @for (capsule of capsules; track capsule.capsule_serial) {
+        <li>
+          <h2>{{ capsule.capsule_serial }}</h2>
+          <p>{{ capsule.type }} · {{ capsule.status }}</p>
+          <p>{{ capsule.details ?? 'No details available.' }}</p>
+        </li>
+      } @empty {
+        <li>No capsules found.</li>
+      }
+    </ul>
+  }
+} @else {
+  <p role="status">Loading capsules…</p>
+}

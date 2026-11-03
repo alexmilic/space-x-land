@@ -1,0 +1,56 @@
+<mat-card class="launch-card" appearance="outlined">
+  <div class="launch-card__media">
+    @if (launch().image?.image_url; as imageUrl) {
+      <img
+        mat-card-image
+        class="launch-card__image"
+        [src]="imageUrl"
+        [alt]="launch().image?.name || launch().name"
+        loading="lazy"
+      />
+    } @else {
+      <div class="launch-card__image-placeholder" role="img" aria-label="No launch image available">
+        <mat-icon aria-hidden="true">rocket_launch</mat-icon>
+      </div>
+    }
+
+    <mat-chip-set class="launch-card__status" aria-label="Launch status">
+      <mat-chip [attr.title]="launch().status.description"
+        [class.status-go]="launch().status.abbrev === 'Go'"
+        [class.status-pending]="launch().status.abbrev === 'TBC' || launch().status.abbrev === 'TBD'">
+        {{ launch().status.name }}
+      </mat-chip>
+    </mat-chip-set>
+  </div>
+
+  <mat-card-content>
+    <p class="launch-card__date">
+      @if (launch().net) {
+        <time [attr.datetime]="launch().net">
+          {{ launch().net | date: 'dd MMM yyyy · HH:mm' : 'UTC' }} UTC
+        </time>
+      } @else {
+        Launch date to be announced
+      }
+    </p>
+
+    <h2 class="launch-card__title">{{ launch().name }}</h2>
+
+    <p class="launch-card__vehicle">
+      {{ launch().launch_service_provider.name }}
+      · {{ launch().rocket.configuration.full_name }}
+    </p>
+
+    <p class="launch-card__location">
+      <mat-icon aria-hidden="true">location_on</mat-icon>
+      <span>{{ launch().pad.name }} · {{ launch().pad.location.name }}</span>
+    </p>
+
+    @if (launch().mission?.description; as description) {
+      <details class="launch-card__details">
+        <summary>View mission</summary>
+        <p>{{ description }}</p>
+      </details>
+    }
+  </mat-card-content>
+</mat-card>

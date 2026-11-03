@@ -1,0 +1,26 @@
+<main class="launches-page">
+  <header class="launches-header">
+    <p class="eyebrow">LAUNCH LIBRARY</p>
+    <h1>Upcoming launches</h1>
+    <p class="intro">Discover the missions getting ready to leave Earth.</p>
+  </header>
+
+  @if (results(); as response) {
+  <p class="results-count">Showing {{ response.results.length }} launches</p>
+  <section class="launches-grid" aria-label="Upcoming launches">
+    @for (launch of response.results; track launch.id) {
+    <app-launch-card [launch]="launch" />
+    } @empty {
+    <p class="empty-message">No upcoming launches found.</p>
+    }
+  </section>
+  <p class="schedule-note">Times shown in UTC · Schedules may change</p>
+  } @else {
+  <div class="loader">
+    @if(isLoading()) {
+    <mat-spinner></mat-spinner>
+    }
+    <span class="loading-message" role="status">{{message()}}</span>
+  </div>
+  }
+</main>

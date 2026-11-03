@@ -10,52 +10,52 @@ import { Space } from './space/space';
 export class SpacesList {
   list = [
     {
-      icon: 'inventory_2',
-      title: 'Capsules',
-      description: 'Explore SpaceX crew and cargo capsules.',
-      link: '/capsules'
+      icon: 'event',
+      title: 'Upcoming Launches',
+      description: 'Discover upcoming launches and their mission details.',
+      link: '/upcoming-launches',
     },
     {
-      icon: 'satellite_alt',
-      title: 'Dragons',
-      description: 'Learn about Dragon spacecraft and their variants.',
-      link: '/dragons'
-    },
-    {
-      icon: 'flight_land',
-      title: 'Landing Pads',
-      description: 'Discover where boosters return to Earth.',
-      link: '/landing-pads'
-    },
-    {
-      icon: 'flight_takeoff',
-      title: 'Launch Pads',
-      description: 'Explore the sites where each journey begins.',
-      link: '/launch-pads'
-    },
-    {
-      icon: 'assignment',
-      title: 'Missions',
-      description: 'Discover the objectives behind SpaceX missions.',
-      link: '/missions'
+      icon: 'history',
+      title: 'Previous Launches',
+      description: 'Explore past launches and the missions they carried to space.',
+      link: '/previous-launches',
     },
     {
       icon: 'rocket_launch',
       title: 'Rockets',
-      description: 'Explore SpaceX launch vehicles and their capabilities.',
-      link: '/rockets'
+      description: 'Learn about launch vehicles and their capabilities.',
+      link: '/rockets',
     },
     {
-      icon: 'directions_car',
-      title: 'Roadster',
-      description: 'Follow the Tesla Roadster on its journey through space.',
-      link: '/roadster'
+      icon: 'satellite_alt',
+      title: 'Spacecraft',
+      description: 'Explore the spacecraft carrying crews and cargo into orbit.',
+      link: '/spacecraft',
     },
     {
-      icon: 'directions_boat',
-      title: 'Ships',
-      description: 'Meet the fleet supporting recovery operations at sea.',
-      link: '/ships'
-    }
-  ]
+      icon: 'person',
+      title: 'Astronauts',
+      description: 'Meet the people exploring space and discover their stories.',
+      link: '/astronauts',
+    },
+    {
+      icon: 'public',
+      title: 'Agencies',
+      description: 'Discover the organizations behind space exploration.',
+      link: '/agencies',
+    },
+    {
+      icon: 'flight_takeoff',
+      title: 'Launch Pads',
+      description: 'Explore the launch pads where journeys to space begin.',
+      link: '/launch-pads',
+    },
+    {
+      icon: 'hub',
+      title: 'Space Stations',
+      description: 'Discover orbital stations and their role in space research.',
+      link: '/space-stations',
+    },
+  ];
 }
