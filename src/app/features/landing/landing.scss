@@ -26,12 +26,12 @@ p {
 }
 
 .blink {
-  animation: fade 2s ease-in-out infinite alternate;
+  animation: fade 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes fade {
   from {
-    opacity: 0.6;
+    opacity: 0.3;
   }
 
   to {
