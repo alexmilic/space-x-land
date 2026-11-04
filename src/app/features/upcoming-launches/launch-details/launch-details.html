@@ -1,0 +1,139 @@
+<main class="launch-details-page">
+  @if (launchDetails(); as launch) {
+  <header class="launch-header">
+    <p class="eyebrow">LAUNCH DETAILS</p>
+    <h1>{{ launch.name }}</h1>
+
+    @if (launch.status; as status) {
+    <span class="status-badge">{{ status.name }}</span>
+    <p>{{ status.description }}</p>
+    }
+  </header>
+
+  @if (launch.image; as image) {
+  <figure class="launch-image">
+    <img [src]="image.image_url" [alt]="image.name" />
+
+    @if (image.credit) {
+    <figcaption>Photo: {{ image.credit }}</figcaption>
+    }
+  </figure>
+  }
+
+  <div class="details-grid">
+    <section class="details-card">
+      <h2>Launch schedule</h2>
+
+      <dl>
+        <dt>Scheduled launch</dt>
+        <dd>{{ launch.net | date: 'medium' : 'UTC' }} UTC</dd>
+
+        <dt>Window opens</dt>
+        <dd>{{ launch.window_start | date: 'medium' : 'UTC' }} UTC</dd>
+
+        <dt>Window closes</dt>
+        <dd>{{ launch.window_end | date: 'medium' : 'UTC' }} UTC</dd>
+      </dl>
+
+      <p>Launch schedules may change.</p>
+    </section>
+
+    @if (launch.mission; as mission) {
+    <section class="details-card">
+      <h2>Mission</h2>
+      <h3>{{ mission.name }}</h3>
+      <p>{{ mission.description }}</p>
+
+      <dl>
+        <dt>Mission type</dt>
+        <dd>{{ mission.type }}</dd>
+
+        @if (mission.orbit; as orbit) {
+        <dt>Orbit</dt>
+        <dd>{{ orbit.name }} ({{ orbit.abbrev }})</dd>
+        }
+      </dl>
+    </section>
+    }
+
+    @if (launch.rocket; as rocket) {
+    @if (rocket.configuration; as configuration) {
+    <section class="details-card">
+      <h2>Rocket</h2>
+      <h3>{{ configuration.full_name }}</h3>
+      <p>{{ configuration.description }}</p>
+
+      <dl>
+        <dt>Reusable</dt>
+        <dd>{{ configuration.reusable ? 'Yes' : 'No' }}</dd>
+
+        <dt>Total launches</dt>
+        <dd>{{ configuration.total_launch_count }}</dd>
+      </dl>
+    </section>
+    }
+    }
+
+    @if (launch.launch_service_provider; as provider) {
+    <section class="details-card">
+      <h2>Launch provider</h2>
+      <h3>{{ provider.name }}</h3>
+      <p>{{ provider.description }}</p>
+
+      @if (provider.info_url) {
+      <a [href]="provider.info_url" target="_blank" rel="noopener noreferrer">
+        Official website ↗
+      </a>
+      }
+    </section>
+    }
+
+    @if (launch.pad; as pad) {
+    <section class="details-card">
+      <h2>Launch location</h2>
+      <h3>{{ pad.name }}</h3>
+      <p>{{ pad.location.name }}</p>
+      <p>{{ pad.country.name }}</p>
+
+      @if (pad.map_url) {
+      <a [href]="pad.map_url" target="_blank" rel="noopener noreferrer">
+        View on map ↗
+      </a>
+      }
+    </section>
+    }
+  </div>
+
+  @if (launch.vid_urls.length) {
+  <section class="details-card">
+    <h2>Watch launch</h2>
+
+    <ul>
+      @for (video of launch.vid_urls; track $index) {
+      <li>
+        <a [href]="video.url" target="_blank" rel="noopener noreferrer">
+          {{ video.title || 'Watch video' }} ↗
+        </a>
+
+        @if (video.live) {
+        <span class="live-badge">Live</span>
+        }
+      </li>
+      }
+    </ul>
+  </section>
+  }
+
+  <footer class="launch-footer">
+    <p>
+      Last updated:
+      {{ launch.last_updated | date: 'medium' : 'UTC' }} UTC
+    </p>
+  </footer>
+  } @else if (isLoading()) {
+  <mat-spinner></mat-spinner>
+  <p class="message" role="status">Loading launch details…</p>
+  } @else {
+  <p class="message" role="alert">{{ message() || 'Launch details are unavailable.' }}</p>
+  }
+</main>

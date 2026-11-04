@@ -7,11 +7,10 @@
 }
 
 .launch-card {
-  @include mat.card-overrides((
-    outlined-container-color: var(--color-surface),
-    outlined-outline-color: var(--color-border),
-    outlined-container-shape: 12px,
-  ));
+  @include mat.card-overrides((outlined-container-color: var(--color-surface),
+      outlined-outline-color: var(--color-border),
+      outlined-container-shape: 12px,
+    ));
   overflow: hidden;
   color: var(--color-text-primary);
   transition: border-color 180ms ease, box-shadow 180ms ease;
@@ -58,11 +57,10 @@
   right: 12px;
 
   mat-chip {
-    @include mat.chips-overrides((
-      elevated-container-color: #283548,
-      label-text-color: #f1f5f9,
-      outline-color: transparent,
-    ));
+    @include mat.chips-overrides((elevated-container-color: #283548,
+        label-text-color: #f1f5f9,
+        outline-color: transparent,
+      ));
   }
 
   .status-go {
@@ -169,4 +167,12 @@ mat-card-content {
   .launch-card {
     transition: none;
   }
+}
+
+.more-info-btn {
+  margin-top: 12px;
+  @include mat.button-overrides((filled-container-color: var(--color-accent),
+      filled-label-text-color: var(--color-background),
+      filled-state-layer-color: var(--color-background),
+    ));
 }

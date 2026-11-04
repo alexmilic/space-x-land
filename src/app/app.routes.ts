@@ -3,6 +3,7 @@ import { Landing } from './features/landing/landing';
 import { SpacesList } from './features/spaces-list/spaces-list';
 import { Capsules } from './features/spaces-list/capsules/capsules';
 import { UpcomingLaunches } from './features/upcoming-launches/upcoming-launches';
+import { LaunchDetails } from './features/upcoming-launches/launch-details/launch-details';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,10 @@ export const routes: Routes = [
   {
     path: 'upcoming-launches',
     component: UpcomingLaunches
+  },
+  {
+    path: 'launch-details/:id',
+    component: LaunchDetails
   }
 
 

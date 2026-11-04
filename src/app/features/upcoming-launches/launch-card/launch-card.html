@@ -50,6 +50,7 @@
       <details class="launch-card__details">
         <summary>View mission</summary>
         <p>{{ description }}</p>
+        <a class="more-info-btn mat-button" matButton="filled" [routerLink]="['/launch-details', launch().id]">View details</a>
       </details>
     }
   </mat-card-content>
