@@ -5,32 +5,41 @@
     <p class="intro">Discover the missions getting ready to leave Earth.</p>
   </header>
 
+  <div class="launches-toolbar" #launchesToolbar>
+    <mat-form-field class="launch-search" appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Search launches</mat-label>
+      <mat-icon matPrefix aria-hidden="true">search</mat-icon>
+      <input matInput placeholder="e.g. Falcon 9" [formControl]="searchControl" />
+      @if (searchControl.value) {
+        <button type="button" matSuffix mat-icon-button aria-label="Clear search" (click)="clearSearch()">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
     @if (results(); as response) {
-    <p class="results-count">Showing {{ response.results.length }} launches</p>
-    <section class="launches-grid" aria-label="Upcoming launches">
-      @for (launch of response.results; track launch.id) {
-      <app-launch-card [launch]="launch" />
-      } @empty {
-      <p class="empty-message">No upcoming launches found.</p>
-      }
-    </section>
-    <div class="pagination-wrap">
-      <mat-paginator 
-      [length]="length()"
-      [pageSize]="12"
-      [pageSizeOptions]="[12, 36, 48]"
-      (page)="onPageChange($event)"
-      [disabled]="isLoading()"
-      aria-label="Select page"
-      />
-    </div>
-    <p class="schedule-note">Times shown in UTC · Schedules may change</p>
-    } @else {
-    <div class="loader">
-      @if(isLoading()) {
-      <mat-spinner></mat-spinner>
-      }
-      <span class="loading-message" role="status">{{message()}}</span>
-    </div>
+      <p class="results-count">Showing <strong>{{ response.results.length }}</strong> of {{ response.count }} launches</p>
     }
+  </div>
+
+  @if (results(); as response) {
+  <section class="launches-grid" aria-label="Upcoming launches">
+    @for (launch of response.results; track launch.id) {
+    <app-launch-card [launch]="launch" />
+    } @empty {
+    <p class="empty-message">No upcoming launches found.</p>
+    }
+  </section>
+  <div class="pagination-wrap">
+    <mat-paginator [length]="length()" [pageSize]="12" [pageSizeOptions]="[12, 36, 48]" (page)="onPageChange($event)"
+      [disabled]="isLoading()" aria-label="Select page" />
+  </div>
+  <p class="schedule-note">Times shown in UTC · Schedules may change</p>
+  } @else {
+  <div class="loader">
+    @if(isLoading()) {
+    <mat-spinner></mat-spinner>
+    }
+    <span class="loading-message" role="status">{{message()}}</span>
+  </div>
+  }
 </main>
