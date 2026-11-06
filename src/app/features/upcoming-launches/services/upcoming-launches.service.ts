@@ -14,9 +14,14 @@ export class UpcomingLaunchesService {
 
   constructor(private http: HttpClient) { }
 
-  getUpcomingLaunches(): Observable<UpcomingLaunchesResponse> {
-    const url = `${environment.baseUrl}/${environment.version}/launches/upcoming/?limit=12`;
-    return this.http.get<UpcomingLaunchesResponse>(url);
+  getUpcomingLaunches(limit: number, offset: number): Observable<UpcomingLaunchesResponse> {
+    const url = `${environment.baseUrl}/${environment.version}/launches/upcoming/?limit=${limit}&offset=${offset}`;
+    return this.http.get<UpcomingLaunchesResponse>(url, {
+      params: {
+        limit: limit.toString(),
+        offset: offset.toString()
+      }
+    });
   }
 
   getLaunchDetailsById(id: string): Observable<LaunchDetailsResponse> {

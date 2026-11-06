@@ -63,6 +63,7 @@ h1 {
   color: var(--color-text-secondary);
   grid-column: 1 / -1;
 }
+
 .loading-message {
   width: 100%;
 }
@@ -100,7 +101,18 @@ h1 {
 }
 
 mat-spinner {
-  @include mat.progress-spinner-overrides((
-    active-indicator-color: var(--color-accent),
+  @include mat.progress-spinner-overrides((active-indicator-color: var(--color-accent),
+    ));
+}
+
+.pagination-wrap {
+  margin-top: 32px;
+}
+
+mat-paginator {
+
+  @include mat.paginator-overrides((
+    container-text-color: var(--color-text),
+    container-background-color: var(--color-surface),
   ));
 }
