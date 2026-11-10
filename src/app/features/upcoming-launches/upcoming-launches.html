@@ -1,12 +1,12 @@
-<main class="launches-page">
-  <header class="launches-header">
-    <p class="eyebrow">LAUNCH LIBRARY</p>
-    <h1>Upcoming launches</h1>
-    <p class="intro">Discover the missions getting ready to leave Earth.</p>
+﻿<main class="list-page">
+  <header class="list-page__header">
+    <p class="list-page__eyebrow">LAUNCH LIBRARY</p>
+    <h1 class="list-page__title">Upcoming launches</h1>
+    <p class="list-page__intro">Discover the missions getting ready to leave Earth.</p>
   </header>
 
-  <div class="launches-toolbar" #launchesToolbar>
-    <mat-form-field class="launch-search" appearance="outline" subscriptSizing="dynamic">
+  <div class="list-page__toolbar" #launchesToolbar>
+    <mat-form-field class="list-page__search" appearance="outline" subscriptSizing="dynamic">
       <mat-label>Search launches</mat-label>
       <mat-icon matPrefix aria-hidden="true">search</mat-icon>
       <input matInput placeholder="e.g. Falcon 9" [formControl]="searchControl" />
@@ -17,29 +17,30 @@
       }
     </mat-form-field>
     @if (results(); as response) {
-      <p class="results-count">Showing <strong>{{ response.results.length }}</strong> of {{ response.count }} launches</p>
+      <p class="list-page__count">Showing <strong>{{ response.results.length }}</strong> of {{ response.count }} launches</p>
     }
   </div>
 
   @if (results(); as response) {
-  <section class="launches-grid" aria-label="Upcoming launches">
+  <section class="list-page__grid" aria-label="Upcoming launches">
     @for (launch of response.results; track launch.id) {
     <app-launch-card [launch]="launch" />
     } @empty {
-    <p class="empty-message">No upcoming launches found.</p>
+    <p class="list-page__empty">No upcoming launches found.</p>
     }
   </section>
-  <div class="pagination-wrap">
+  <div class="list-page__footer">
     <mat-paginator [length]="length()" [pageSize]="12" [pageSizeOptions]="[12, 36, 48]" (page)="onPageChange($event)"
       [disabled]="isLoading()" aria-label="Select page" />
   </div>
-  <p class="schedule-note">Times shown in UTC · Schedules may change</p>
+  <p class="list-page__note">Times shown in UTC Â· Schedules may change</p>
   } @else {
-  <div class="loader">
+  <div class="list-page__loader">
     @if(isLoading()) {
     <mat-spinner></mat-spinner>
     }
-    <span class="loading-message" role="status">{{message()}}</span>
+    <span class="list-page__loading-message" role="status">{{message()}}</span>
   </div>
   }
 </main>
+
