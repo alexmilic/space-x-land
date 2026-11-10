@@ -13,5 +13,6 @@ export class Space {
   icon = input.required<string>();
   description = input('');
   link = input('');
+  isDisabled = input();
 }
 

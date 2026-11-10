@@ -25,6 +25,14 @@ export const routes: Routes = [
   {
     path: 'launch-details/:id',
     component: LaunchDetails
+  },
+  {
+    path: 'rockets',
+    loadComponent: () => import('./features/rockets/rockets').then(m => m.Rockets)
+  },
+  {
+    path: 'rockets/:id',
+    loadComponent: () => import('./features/rockets/rocket-details/rocket-details').then(m => m.RocketDetails)
   }
 
 

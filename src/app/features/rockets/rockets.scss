@@ -1,0 +1,115 @@
+﻿@use '@angular/material' as mat;
+
+:host {
+  display: block;
+}
+
+.rockets-page {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: 48px 32px 64px;
+}
+
+.rockets-header {
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+.intro {
+  margin: 16px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.results-count {
+  margin: 0 0 24px;
+  color: var(--color-text-secondary);
+  text-align: right;
+  font-size: 14px;
+
+  strong {
+    color: var(--color-text-primary);
+    font-weight: 600;
+  }
+}
+
+.rockets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.loading-message,
+.empty-message {
+  padding-block: 32px;
+  color: var(--color-text-secondary);
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 1000px) {
+  .rockets-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .rockets-page {
+    padding: 32px 16px 48px;
+  }
+
+  .rockets-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .intro {
+    font-size: 16px;
+  }
+
+  .results-count {
+    text-align: left;
+  }
+}
+
+.loader {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+  /* background: red; */
+  min-height: 50vh;
+  align-items: center;
+}
+
+mat-spinner {
+  @include mat.progress-spinner-overrides((active-indicator-color: var(--color-accent),
+    ));
+}
+
+.loading-message,
+.empty-message {
+  padding-block: 32px;
+  color: var(--color-text-secondary);
+  grid-column: 1 / -1;
+}
+
+.loading-message {
+  width: 100%;
+}

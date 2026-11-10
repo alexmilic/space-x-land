@@ -1,0 +1,41 @@
+@if (rocket(); as item) {
+  <article class="rocket-card">
+    <div class="rocket-card__media">
+      @if (item.image?.image_url; as imageUrl) {
+        <img [src]="imageUrl" [alt]="item.image?.name || item.full_name || item.name" loading="lazy" />
+      } @else {
+        <div class="rocket-card__placeholder">
+          <mat-icon aria-hidden="true">rocket_launch</mat-icon>
+          <span>Image unavailable</span>
+        </div>
+      }
+      @if (item.active === true || item.active === false) {
+        <span class="rocket-card__status" [class.rocket-card__status--active]="item.active">
+          {{ item.active ? 'Active' : 'Inactive' }}
+        </span>
+      }
+    </div>
+
+    <div class="rocket-card__body">
+      <p class="rocket-card__manufacturer">{{ item.manufacturer?.name || 'Manufacturer unknown' }}</p>
+      <h2>{{ item.full_name || item.name }}</h2>
+      <p class="rocket-card__description">{{ item.description || 'Details about this rocket are not available yet.' }}</p>
+
+      <dl class="rocket-card__stats">
+        <div>
+          <dt>Total launches</dt>
+          <dd>{{ item.total_launch_count ?? '—' }}</dd>
+        </div>
+        <div>
+          <dt>Reusable</dt>
+          <dd>{{ item.reusable === true ? 'Yes' : item.reusable === false ? 'No' : '—' }}</dd>
+        </div>
+      </dl>
+
+      <a class="rocket-card__link" [routerLink]="['/rockets', item.id]" [attr.aria-label]="'Explore ' + (item.full_name || item.name)">
+        Explore rocket
+        <mat-icon aria-hidden="true">arrow_forward</mat-icon>
+      </a>
+    </div>
+  </article>
+}

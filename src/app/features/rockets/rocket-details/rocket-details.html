@@ -1,0 +1,66 @@
+﻿<main class="rocket-page">
+  <a class="back-link" routerLink="/rockets">← All rockets</a>
+  @if (rocketDetails(); as rocket) {
+    <header>
+      <p class="eyebrow">ROCKET PROFILE</p>
+      <h1>{{ rocket.full_name || rocket.name }}</h1>
+      <p class="intro">{{ rocket.manufacturer?.name || 'Manufacturer unknown' }}</p>
+      <div class="badges">
+        @if (rocket.active === true || rocket.active === false) {
+          <span class="badge" [class.badge--accent]="rocket.active">{{ rocket.active ? 'Active' : 'Inactive' }}</span>
+        }
+        @if (rocket.reusable === true) { <span class="badge">Reusable</span> }
+        @if (rocket.variant) { <span class="badge">Variant {{ rocket.variant }}</span> }
+      </div>
+    </header>
+    <div class="overview">
+      <figure class="rocket-image">
+        @if (rocket.image?.image_url; as imageUrl) {
+          <img [src]="imageUrl" [alt]="rocket.image?.name || rocket.name" />
+          @if (rocket.image?.credit) { <figcaption>Photo: {{ rocket.image?.credit }}</figcaption> }
+        } @else { <div class="image-placeholder">Image unavailable</div> }
+      </figure>
+      <section class="panel">
+        <h2>About the rocket</h2>
+        <p class="description">{{ rocket.description || 'A description for this rocket is not available yet.' }}</p>
+        <dl>
+          <div><dt>First flight</dt><dd>{{ rocket.maiden_flight ? (rocket.maiden_flight | date: 'mediumDate' : 'UTC') : '—' }}</dd></div>
+          <div><dt>Manufacturer</dt><dd>{{ rocket.manufacturer?.name || '—' }}</dd></div>
+        </dl>
+        <nav class="resource-links" aria-label="Rocket resources">
+          @if (rocket.info_url) { <a [href]="rocket.info_url" target="_blank" rel="noopener noreferrer">Official website ↗</a> }
+          @if (rocket.wiki_url) { <a [href]="rocket.wiki_url" target="_blank" rel="noopener noreferrer">Wikipedia ↗</a> }
+        </nav>
+      </section>
+    </div>
+    <section class="stats" aria-label="Launch statistics">
+      <div class="stat"><span>Total launches</span><strong>{{ rocket.total_launch_count == null ? '—' : (rocket.total_launch_count | number) }}</strong></div>
+      <div class="stat"><span>Successful launches</span><strong>{{ rocket.successful_launches == null ? '—' : (rocket.successful_launches | number) }}</strong></div>
+      <div class="stat"><span>Failed launches</span><strong>{{ rocket.failed_launches == null ? '—' : (rocket.failed_launches | number) }}</strong></div>
+      <div class="stat"><span>Pending launches</span><strong>{{ rocket.pending_launches == null ? '—' : (rocket.pending_launches | number) }}</strong></div>
+    </section>
+    <div class="details-grid">
+      <section class="panel">
+        <h2>Dimensions</h2>
+        <dl>
+          <div><dt>Height</dt><dd>@if (rocket.length != null) { {{ rocket.length | number }} m } @else { — }</dd></div>
+          <div><dt>Diameter</dt><dd>@if (rocket.diameter != null) { {{ rocket.diameter | number }} m } @else { — }</dd></div>
+          <div><dt>Launch mass</dt><dd>@if (rocket.launch_mass != null) { {{ rocket.launch_mass | number }} t } @else { — }</dd></div>
+        </dl>
+      </section>
+      <section class="panel">
+        <h2>Payload capacity</h2>
+        <dl>
+          <div><dt>Low Earth orbit (LEO)</dt><dd>@if (rocket.leo_capacity != null) { {{ rocket.leo_capacity | number }} kg } @else { — }</dd></div>
+          <div><dt>Geostationary transfer orbit (GTO)</dt><dd>@if (rocket.gto_capacity != null) { {{ rocket.gto_capacity | number }} kg } @else { — }</dd></div>
+          <div><dt>Sun-synchronous orbit (SSO)</dt><dd>@if (rocket.sso_capacity != null) { {{ rocket.sso_capacity | number }} kg } @else { — }</dd></div>
+        </dl>
+      </section>
+    </div>
+    <p class="data-note">Unavailable data is shown as —.</p>
+  } @else if (isLoading()) {
+    <p class="page-message" role="status">Loading rocket details…</p>
+  } @else {
+    <p class="page-message" role="alert">{{ message() }}</p>
+  }
+</main>
