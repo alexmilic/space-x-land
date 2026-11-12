@@ -5,8 +5,24 @@
     <p class="list-page__intro">Discover the launch vehicles powering missions beyond Earth.</p>
   </header>
 
+  <div class="list-page__toolbar" #launchesToolbar>
+    <mat-form-field class="list-page__search" appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Search launches</mat-label>
+      <mat-icon matPrefix aria-hidden="true">search</mat-icon>
+      <input matInput placeholder="e.g. Falcon 9" [formControl]="searchControl" />
+      @if (searchControl.value) {
+      <button type="button" matSuffix mat-icon-button aria-label="Clear search" (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+      }
+    </mat-form-field>
+    @if (results(); as response) {
+    <p class="list-page__count">Showing <strong>{{ response.results.length }}</strong> of {{ response.count }} launches
+    </p>
+    }
+  </div>
+
   @if (results(); as response) {
-  <p class="list-page__count">Showing <strong>{{ response.results.length }}</strong> of {{ response.count }} rockets</p>
   <section class="list-page__grid" aria-label="Rockets">
     @for (rocket of response.results; track rocket.id) {
     <app-rocket-card [rocket]="rocket" />
