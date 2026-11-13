@@ -35,7 +35,7 @@ export class SpacesList {
       title: 'Spacecraft',
       description: 'Explore the spacecraft carrying crews and cargo into orbit.',
       link: '/spacecraft',
-      isDisabled: false
+      isDisabled: true
     },
     {
       icon: 'person',
@@ -49,21 +49,21 @@ export class SpacesList {
       title: 'Agencies',
       description: 'Discover the organizations behind space exploration.',
       link: '/agencies',
-      isDisabled: false
+      isDisabled: true
     },
     {
       icon: 'flight_takeoff',
       title: 'Launch Pads',
       description: 'Explore the launch pads where journeys to space begin.',
       link: '/launch-pads',
-      isDisabled: false
+      isDisabled: true
     },
     {
       icon: 'hub',
       title: 'Space Stations',
       description: 'Discover orbital stations and their role in space research.',
       link: '/space-stations',
-      isDisabled: false
+      isDisabled: true
     },
   ];
 }

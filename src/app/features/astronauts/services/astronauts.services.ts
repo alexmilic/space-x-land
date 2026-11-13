@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { AstronautsResponse } from './astronauts.model';
+import { AstronautsResponse, Result } from './astronauts.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,4 +23,8 @@ export class AstronautsService {
     });
   }
 
+  getAstronautById(id: string): Observable<Result> {
+    const url = `${environment.baseUrl}/${environment.version}/astronauts/${id}`;
+    return this.http.get<Result>(url);
+  }
 }

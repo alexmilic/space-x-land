@@ -1,0 +1,295 @@
+﻿:host {
+  display: block;
+  color: var(--color-text-primary);
+}
+
+.astronaut-page {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: 40px 32px 64px;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 5px;
+    border-radius: 4px;
+  }
+}
+
+.back-link,
+.resource-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 14px;
+}
+
+.back-link {
+  margin-bottom: 24px;
+}
+
+.resource-link mat-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.profile-header {
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  overflow-wrap: anywhere;
+}
+
+.intro {
+  margin: 16px 0 20px;
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.badge {
+  padding: 6px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge--accent {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  gap: 24px;
+  margin-bottom: 24px;
+  align-items: start;
+}
+
+.portrait {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: var(--color-surface-hover);
+}
+
+.portrait img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+figcaption {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  left: 12px;
+  width: fit-content;
+  margin-left: auto;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: var(--color-surface-translucent);
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}
+
+.portrait-placeholder {
+  display: flex;
+  aspect-ratio: 4 / 5;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--color-text-secondary);
+}
+
+.portrait-placeholder mat-icon {
+  width: 64px;
+  height: 64px;
+  font-size: 64px;
+  color: var(--color-accent);
+}
+
+.panel {
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid var(--color-border);
+  border-radius: 18px;
+  background: var(--color-surface);
+  overflow-wrap: anywhere;
+}
+
+h2 {
+  margin: 0 0 20px;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.biography p {
+  margin: 0 0 20px;
+  color: var(--color-text-intro);
+  line-height: 1.85;
+  white-space: pre-line;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+}
+
+.stat span {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.stat strong {
+  color: var(--color-accent);
+  font-size: clamp(28px, 4vw, 36px);
+  overflow-wrap: anywhere;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+dl {
+  margin: 0;
+}
+
+dl>div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+dl>div:last-child {
+  border-bottom: 0;
+}
+
+dt {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.social-panel {
+  margin-top: 24px;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.data-note {
+  margin-top: 24px;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+}
+
+.page-message {
+  display: grid;
+  min-height: 40vh;
+  place-items: center;
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .profile-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .portrait {
+    width: min(100%, 480px);
+  }
+}
+
+@media (max-width: 640px) {
+  .astronaut-page {
+    padding: 24px 16px 48px;
+  }
+
+  .details-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .panel {
+    padding: 22px;
+  }
+
+  .stats {
+    gap: 10px;
+  }
+
+  .stat {
+    padding: 16px 12px;
+  }
+
+  .intro {
+    font-size: 16px;
+  }
+}

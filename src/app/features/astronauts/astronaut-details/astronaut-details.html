@@ -1,1 +1,101 @@
-<p>astronaut-details works!</p>
+﻿<main class="astronaut-page">
+  <a class="back-link" routerLink="/astronauts"><mat-icon aria-hidden="true">arrow_back</mat-icon>All astronauts</a>
+  @if (astronautDetails(); as person) {
+  <header class="profile-header">
+    <p class="eyebrow">ASTRONAUT PROFILE</p>
+    <h1>{{ person.name }}</h1>
+    <p class="intro">{{ (person.agency && person.agency.name) || 'Agency unknown' }}</p>
+    <div class="badges">
+      @if (person.status; as status) { <span class="badge">{{ status.name }}</span> }
+      @if (person.in_space) { <span class="badge badge--accent">Currently in space</span> }
+    </div>
+  </header>
+
+  <div class="profile-grid">
+    <figure class="portrait">
+      @if (person.image && person.image.image_url; as imageUrl) {
+      <img [src]="imageUrl" [alt]="person.name" />
+      @if (person.image.credit) { <figcaption>Photo: {{ person.image.credit }}</figcaption> }
+      } @else {
+      <div class="portrait-placeholder"><mat-icon aria-hidden="true">person</mat-icon><span>Photo unavailable</span>
+      </div>
+      }
+    </figure>
+    <section class="panel biography">
+      <h2>Biography</h2>
+      <p>{{ person.bio || 'A biography is not available yet.' }}</p>
+      @if (person.wiki) {
+      <a class="resource-link" [href]="person.wiki" target="_blank" rel="noopener noreferrer">Read more on Wikipedia
+        <mat-icon aria-hidden="true">open_in_new</mat-icon></a>
+      }
+    </section>
+  </div>
+
+  <section class="stats" aria-label="Spaceflight statistics">
+    <div class="stat"><span>Spaceflights</span><strong>{{ person.flights_count ?? '—' }}</strong></div>
+    <div class="stat"><span>Landings</span><strong>{{ person.landings_count ?? '—' }}</strong></div>
+    <div class="stat"><span>Spacewalks</span><strong>{{ person.spacewalks_count ?? '—' }}</strong></div>
+  </section>
+
+  <div class="details-grid">
+    <section class="panel">
+      <h2>Personal information</h2>
+      <dl>
+        <div>
+          <dt>Nationality</dt>
+          <dd>@for (country of person.nationality; track country.id; let last = $last) { {{ country.name }}{{ last ? ''
+            : ', ' }} } @empty { — }</dd>
+        </div>
+        <div>
+          <dt>Born</dt>
+          <dd>{{ person.date_of_birth ? (person.date_of_birth | date: 'mediumDate' : 'UTC') : '—' }}</dd>
+        </div>
+        @if (person.date_of_death) {
+        <div>
+          <dt>Died</dt>
+          <dd>{{ person.date_of_death | date: 'mediumDate' : 'UTC' }}</dd>
+        </div>
+        } @else if (person.age != null) {
+        <div>
+          <dt>Age</dt>
+          <dd>{{ person.age }}</dd>
+        </div>
+        }
+      </dl>
+    </section>
+    <section class="panel">
+      <h2>Spaceflight experience</h2>
+      <dl>
+        <div>
+          <dt>First flight</dt>
+          <dd>{{ person.first_flight ? (person.first_flight | date: 'mediumDate' : 'UTC') : '—' }}</dd>
+        </div>
+        <div>
+          <dt>Latest flight</dt>
+          <dd>{{ person.last_flight ? (person.last_flight | date: 'mediumDate' : 'UTC') : '—' }}</dd>
+        </div>
+        <div>
+          <dt>Agency</dt>
+          <dd>{{ (person.agency && person.agency.name) || '—' }}</dd>
+        </div>
+      </dl>
+    </section>
+  </div>
+  @if (person.social_media_links && person.social_media_links.length) {
+  <section class="panel social-panel">
+    <h2>Follow {{ person.name }}</h2>
+    <nav class="social-links" aria-label="Astronaut social profiles">
+      @for (link of person.social_media_links; track link.id) {
+      <a class="resource-link" [href]="link.url" target="_blank" rel="noopener noreferrer">{{ link.social_media.name }}
+        <mat-icon aria-hidden="true">open_in_new</mat-icon></a>
+      }
+    </nav>
+  </section>
+  }
+  <p class="data-note">Unavailable data is shown as —.</p>
+  } @else if (isLoading()) {
+  <p class="page-message" role="status">Loading astronaut details…</p>
+  } @else {
+  <p class="page-message" role="alert">{{ message() }}</p>
+  }
+</main>

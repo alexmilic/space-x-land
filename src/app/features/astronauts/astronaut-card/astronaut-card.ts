@@ -1,10 +1,11 @@
 import { Component, input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 import type { Result } from '../services/astronauts.model';
 
 @Component({
   selector: 'app-astronaut-card',
-  imports: [MatIcon],
+  imports: [MatIcon, RouterLink],
   templateUrl: './astronaut-card.html',
   styleUrl: './astronaut-card.scss',
 })

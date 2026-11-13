@@ -38,6 +38,10 @@ export const routes: Routes = [
     path: 'astronauts',
     loadComponent: () => import('./features/astronauts/astronauts').then(m => m.Astronauts)
   },
+  {
+    path: 'astronauts/:id',
+    loadComponent: () => import('./features/astronauts/astronaut-details/astronaut-details').then(m => m.AstronautDetails)
+  },
 
 
 

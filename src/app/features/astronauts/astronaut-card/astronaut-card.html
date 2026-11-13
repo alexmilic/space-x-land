@@ -31,11 +31,9 @@
         <div><dt>Spaceflights</dt><dd>{{ person.flights_count ?? '—' }}</dd></div>
         <div><dt>Spacewalks</dt><dd>{{ person.spacewalks_count ?? '—' }}</dd></div>
       </dl>
-      @if (person.wiki) {
-        <a class="astronaut-card__link" [href]="person.wiki" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Read about ' + person.name + ' on Wikipedia (opens in a new tab)'">
-          Read biography <mat-icon aria-hidden="true">open_in_new</mat-icon>
+        <a class="astronaut-card__link" [routerLink]="['/astronauts', person.id]" [attr.aria-label]="'View profile of ' + person.name">
+          View profile <mat-icon aria-hidden="true">arrow_forward</mat-icon>
         </a>
-      }
     </div>
   </article>
 }
