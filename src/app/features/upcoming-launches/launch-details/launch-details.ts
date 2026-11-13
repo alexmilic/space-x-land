@@ -5,10 +5,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
 import type { LaunchDetailsResponse } from '../services/launch-details.models';
 import { MatSpinner } from '@angular/material/progress-spinner';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-launch-details',
-  imports: [DatePipe, MatSpinner],
+  imports: [DatePipe, MatSpinner, RouterLink],
   templateUrl: './launch-details.html',
   styleUrl: './launch-details.scss',
 })
@@ -33,21 +34,21 @@ export class LaunchDetails implements OnInit {
 
   getLaunchDetails(launchId: string) {
     this.upcomingLaunchesService.getLaunchDetailsById(launchId)
-    .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe(
-      {
-        next: (response) => {
-          this.launchDetails.set(response);
-          this.message.set(null);
-          this.isLoading.set(false);
-          console.log('Launch details response:', response);
-        },
-        error: (error) => {
-          this.message.set('Error fetching launch details.');
-          this.isLoading.set(false);
-          console.error('Error fetching launch details:', error);
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(
+        {
+          next: (response) => {
+            this.launchDetails.set(response);
+            this.message.set(null);
+            this.isLoading.set(false);
+            console.log('Launch details response:', response);
+          },
+          error: (error) => {
+            this.message.set('Error fetching launch details.');
+            this.isLoading.set(false);
+            console.error('Error fetching launch details:', error);
+          }
         }
-      }
-    );
+      );
   }
 }

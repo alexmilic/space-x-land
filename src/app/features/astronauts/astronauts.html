@@ -1,0 +1,46 @@
+<main class="list-page">
+  <header class="list-page__header">
+    <p class="list-page__eyebrow">ROCKETS LIBRARY</p>
+    <h1 class="list-page__title">Explore rockets</h1>
+    <p class="list-page__intro">Discover the launch vehicles powering missions beyond Earth.</p>
+  </header>
+
+  <div class="list-page__toolbar" #launchesToolbar>
+    <mat-form-field class="list-page__search" appearance="outline" subscriptSizing="dynamic">
+      <mat-label>Search launches</mat-label>
+      <mat-icon matPrefix aria-hidden="true">search</mat-icon>
+      <input matInput placeholder="e.g. Falcon 9" [formControl]="searchControl" />
+      @if (searchControl.value) {
+      <button type="button" matSuffix mat-icon-button aria-label="Clear search" (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+      }
+    </mat-form-field>
+    @if (results(); as response) {
+    <p class="list-page__count">Showing <strong>{{ response.results.length }}</strong> of {{ response.count }} launches
+    </p>
+    }
+  </div>
+
+
+  @if (results(); as response) {
+  <section class="list-page__grid" aria-label="Rockets">
+    @for (astronaut of results()?.results; track astronaut.id) {
+    <app-astronaut-card [astronaut]="astronaut" />
+    } @empty {
+    <p class="list-page__empty">No rockets found.</p>
+    }
+  </section>
+  <div class="list-page__footer">
+    <mat-paginator [length]="length()" [pageSize]="12" [pageSizeOptions]="[12, 36, 48]" (page)="onPageChange($event)"
+      [disabled]="isLoading()" aria-label="Select page" />
+  </div>
+  } @else {
+  <div class="list-page__loader">
+    @if(isLoading()) {
+    <mat-spinner></mat-spinner>
+    }
+    <span class="list-page__loading-message" role="status">{{message()}}</span>
+  </div>
+  }
+</main>

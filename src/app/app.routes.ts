@@ -8,7 +8,7 @@ import { LaunchDetails } from './features/upcoming-launches/launch-details/launc
 export const routes: Routes = [
   {
     path: '',
-    component: Landing    
+    component: Landing
   },
   {
     path: 'spaces-list',
@@ -33,7 +33,12 @@ export const routes: Routes = [
   {
     path: 'rockets/:id',
     loadComponent: () => import('./features/rockets/rocket-details/rocket-details').then(m => m.RocketDetails)
-  }
+  },
+  {
+    path: 'astronauts',
+    loadComponent: () => import('./features/astronauts/astronauts').then(m => m.Astronauts)
+  },
+
 
 
   // dodati rute i kreirati komponente za sve ekrane sa spaces-list

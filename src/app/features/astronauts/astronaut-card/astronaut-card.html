@@ -1,0 +1,42 @@
+﻿@if (astronaut(); as person) {
+  <article class="astronaut-card">
+    <div class="astronaut-card__media">
+      @if (person.image && person.image.image_url; as imageUrl) {
+        <img [src]="imageUrl" [alt]="person.name" loading="lazy" />
+      } @else {
+        <div class="astronaut-card__placeholder">
+          <mat-icon aria-hidden="true">person</mat-icon>
+          <span>Photo unavailable</span>
+        </div>
+      }
+      <div class="astronaut-card__badges">
+        @if (person.status; as status) {
+          <span class="astronaut-card__badge">{{ status.name }}</span>
+        }
+        @if (person.in_space) {
+          <span class="astronaut-card__badge astronaut-card__badge--accent">In space</span>
+        }
+      </div>
+    </div>
+    <div class="astronaut-card__body">
+      <p class="astronaut-card__agency">{{ (person.agency && person.agency.name) || 'Agency unknown' }}</p>
+      <h2>{{ person.name }}</h2>
+      <p class="astronaut-card__nationality">
+        @for (country of person.nationality; track country.id; let last = $last) {
+          {{ country.name }}{{ last ? '' : ' · ' }}
+        } @empty { Nationality unknown }
+      </p>
+      <p class="astronaut-card__bio">{{ person.bio || 'A biography is not available yet.' }}</p>
+      <dl class="astronaut-card__stats">
+        <div><dt>Spaceflights</dt><dd>{{ person.flights_count ?? '—' }}</dd></div>
+        <div><dt>Spacewalks</dt><dd>{{ person.spacewalks_count ?? '—' }}</dd></div>
+      </dl>
+      @if (person.wiki) {
+        <a class="astronaut-card__link" [href]="person.wiki" target="_blank" rel="noopener noreferrer" [attr.aria-label]="'Read about ' + person.name + ' on Wikipedia (opens in a new tab)'">
+          Read biography <mat-icon aria-hidden="true">open_in_new</mat-icon>
+        </a>
+      }
+    </div>
+  </article>
+}
+

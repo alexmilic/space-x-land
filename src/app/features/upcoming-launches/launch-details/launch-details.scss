@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+
 :host {
   display: block;
   color: #e8edf5;
@@ -179,4 +180,12 @@ mat-spinner {
 
 .message {
   text-align: center;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: 24px;
+  font-size: 14px;
 }
