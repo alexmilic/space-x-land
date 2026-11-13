@@ -1,9 +1,15 @@
 import { Component } from '@angular/core';
 import { Space } from './space/space';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-spaces-list',
-  imports: [Space],
+  imports: [
+    Space,
+    MatTooltip,
+    MatTooltipModule
+  ],
   templateUrl: './spaces-list.html',
   styleUrls: ['./spaces-list.scss'],
 })
